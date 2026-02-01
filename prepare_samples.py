@@ -27,8 +27,8 @@ def prepare_samples():
     if os.path.exists(tmax_path) and os.path.exists(tmin_path):
         print("Merging CMIP6 Tmax and Tmin...")
         try:
-            ds_tmax = xr.open_dataset(tmax_path)
-            ds_tmin = xr.open_dataset(tmin_path)
+            ds_tmax = xr.open_dataset(tmax_path, engine='netcdf4')
+            ds_tmin = xr.open_dataset(tmin_path, engine='netcdf4')
             
             # Merge
             ds_cmip6 = xr.merge([ds_tmax, ds_tmin])

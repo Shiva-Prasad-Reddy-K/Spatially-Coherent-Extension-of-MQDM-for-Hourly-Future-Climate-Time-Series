@@ -55,8 +55,16 @@ def download_variable(variable_name, output_filename):
                 print("Error: Zip file is empty.")
                 return
             
-            # Extract the first file (assuming it's the data)
-            original_nc_name = extracted_files[0]
+            # Find the NetCDF file in the zip
+            nc_files = [f for f in extracted_files if f.endswith('.nc')]
+            if not nc_files:
+                print("Error: No .nc file found in zip.")
+                return
+            
+            # Use the first .nc file found (usually there's only one data file)
+            original_nc_name = nc_files[0]
+            print(f"Found NetCDF file: {original_nc_name}")
+            
             zip_ref.extract(original_nc_name, OUTPUT_DIR)
             
             # Rename to clean target name
