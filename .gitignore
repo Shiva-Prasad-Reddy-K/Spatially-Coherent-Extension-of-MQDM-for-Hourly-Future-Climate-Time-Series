@@ -1,0 +1,13 @@
+# Data files
+*.nc
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Plots
+*.png
+
+# System files
+.DS_Store
